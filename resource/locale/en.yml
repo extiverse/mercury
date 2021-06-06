@@ -1,0 +1,7 @@
+extiverse-mercury:
+    admin:
+        settings:
+            token: "Retrieve an API token from <a>Extiverse</a>."
+        header-secondary:
+            no-token: Token Required
+            updates: "{count, plural, =0 {No updates} one {One update} other {# updates}}"
