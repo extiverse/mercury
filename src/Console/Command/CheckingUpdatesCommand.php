@@ -3,10 +3,10 @@
 namespace Extiverse\Mercury\Console\Command;
 
 use Extiverse\Api\Flarum\UpdatesChecker;
+use Extiverse\Api\JsonApi\Types\Extension\Extension;
 use Flarum\Extension\ExtensionManager;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Container\Container;
 
 class CheckingUpdatesCommand extends Command
 {
@@ -25,6 +25,17 @@ class CheckingUpdatesCommand extends Command
 
         $extensions = $checker->process();
 
+        $settings->set('extiverse-mercury.updates-required', $extensions->filter(function (Extension $extension) {
+            return $extension['needs-update'];
+        })->count());
 
+        $this->table(
+            ['extension', 'needs update?'],
+            $extensions
+                ->map(function (Extension $extension) {
+                    return [$extension->name, $extension['needs-update'] ? 'yes' : 'no'];
+                })
+                ->toArray()
+        );
     }
 }

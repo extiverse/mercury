@@ -1,7 +1,9 @@
 extiverse-mercury:
     admin:
         settings:
-            token: "Retrieve an API token from <a>Extiverse</a>."
+            token: Extiverse token (<a>request</a>)
+            token-description: |
+                Retrieve an API token from <a>Extiverse</a> so that Mercury can securely communicate with your Flarum community.
         header-secondary:
             no-token: Token Required
             updates: "{count, plural, =0 {No updates} one {One update} other {# updates}}"

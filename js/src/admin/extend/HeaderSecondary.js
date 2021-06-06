@@ -7,7 +7,7 @@ export default function () {
         const token = app.data.settings['extiverse-mercury.token'] || null;
         let label;
         let icon;
-        const updates = 0;
+        const updates = app.data.settings['extiverse-mercury.updates-required'];
 
         if (! token) {
             label = app.translator.trans('extiverse-mercury.admin.header-secondary.no-token');
