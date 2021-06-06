@@ -1,0 +1,44 @@
+{
+  "name": "extiverse/mercury",
+  "description": "The extension support tool for Flarum",
+  "keywords": [
+    "extension",
+    "flarum",
+    "extiverse",
+    "updates",
+    "notification"
+  ],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "homepage": "https://extiverse.com",
+  "authors": [
+    {
+      "name": "Daniël Klabbers",
+      "email": "daniel@klabbers.email",
+      "homepage": "http://luceos.com"
+    }
+  ],
+  "require": {
+    "flarum/core": "^1.0.0",
+    "swisnl/json-api-client": "^1.3.3"
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "Mercury",
+      "category": "feature",
+      "icon": {
+        "name": "fas fa-dot-circle",
+        "backgroundColor": "#EBF1FD",
+        "color": "#3a98d0"
+      }
+    },
+    "extiverse": {
+      "discuss": ""
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Extiverse\\Mercury\\": "src/"
+    }
+  }
+}
