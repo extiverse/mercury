@@ -1,6 +1,6 @@
 {
     "name": "extiverse/mercury",
-    "description": "The extension support tool for Flarum",
+    "description": "The Extiverse extension to understand Flarum extension updates",
     "keywords": [
         "extension",
         "flarum",
