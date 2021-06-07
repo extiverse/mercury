@@ -4,13 +4,17 @@ namespace Extiverse\Mercury\Console\Command;
 
 use Extiverse\Api\Flarum\UpdatesChecker;
 use Extiverse\Api\JsonApi\Types\Extension\Extension;
+use Extiverse\Mercury\Job\SendExtensionUpdatesNotification;
 use Flarum\Extension\ExtensionManager;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Queue\Queue;
+use Illuminate\Support\Collection;
 
 class CheckingUpdatesCommand extends Command
 {
-    protected $signature = 'mercury:update-check';
+    protected $signature = 'mercury:update-check
+    {--notify : Notify the admins users by email when new updates are available}';
     protected $description = 'Check your forum for updates.';
 
     public function handle(ExtensionManager $manager, SettingsRepositoryInterface $settings)
@@ -25,9 +29,15 @@ class CheckingUpdatesCommand extends Command
 
         $extensions = $checker->process();
 
-        $settings->set('extiverse-mercury.updates-required', $extensions->filter(function (Extension $extension) {
+        $updatesAvailable = $extensions->filter(function (Extension $extension) {
             return $extension['needs-update'];
-        })->count());
+        });
+
+        $settings->set('extiverse-mercury.updates-required', $updatesAvailable->count());
+
+        if ($updatesAvailable && $this->option('notify')) {
+            $this->notify($updatesAvailable);
+        }
 
         $this->table(
             ['extension', 'needs update?'],
@@ -37,5 +47,13 @@ class CheckingUpdatesCommand extends Command
                 })
                 ->toArray()
         );
+    }
+
+    private function notify(Collection $extensions)
+    {
+        /** @var Queue $queue */
+        $queue = resolve(Queue::class);
+
+        $queue->push(new SendExtensionUpdatesNotification($extensions));
     }
 }

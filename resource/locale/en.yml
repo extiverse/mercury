@@ -1,5 +1,10 @@
 extiverse-mercury:
     admin:
+        extension-updates-page:
+            extension-name: Extension
+            extension-is-up-to-date: Is up to date
+            highest-version: Latest release
+            installed-version: Installed release
         settings:
             token: Extiverse token (<a>request</a>)
             token-description: |
@@ -7,3 +12,15 @@ extiverse-mercury:
         header-secondary:
             no-token: Token Required
             updates: "{count, plural, =0 {No updates} one {One update} other {# updates}}"
+    email:
+        new-extension-update:
+            subject: "{count, plural, one {One update available for your community} other {# updates available for your community}}"
+            body: |
+                Hey {recipient_display_name}!
+
+                {count} updates have been found on your Flarum community. It is highly recommended to
+                update as soon as you can.
+
+                The updates include the following extensions {extensions}.
+
+                Please visit your community for more information: {url}.
