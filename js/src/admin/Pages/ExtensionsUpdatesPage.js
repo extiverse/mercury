@@ -7,19 +7,24 @@ export default class ExtensionsUpdatesPage extends ExtensionPage {
     oninit(vnode) {
         super.oninit(vnode);
 
+        this.token = app.data.settings['extiverse-mercury.token'] || null;
         this.loading = true;
         this.updates = [];
 
-        app.request({
-            method: 'GET',
-            url: app.forum.attribute('apiUrl') + '/extiverse/mercury/extension-updates'
-        }).then((response) => {
-            this.updates = response;
+        if (this.token) {
+            app.request({
+                method: 'GET',
+                url: app.forum.attribute('apiUrl') + '/extiverse/mercury/extension-updates'
+            }).then((response) => {
+                this.updates = response;
 
+                this.loading = false;
+
+                m.redraw();
+            });
+        } else {
             this.loading = false;
-
-            m.redraw();
-        });
+        }
     }
 
     className() {
