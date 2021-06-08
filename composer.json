@@ -20,7 +20,7 @@
     ],
     "require": {
         "flarum/core": "^1.0.0",
-        "extiverse/api-client": "^0.2"
+        "extiverse/api-client": "^0.2.1"
     },
     "require-dev": {
         "extiverse/api-client": "@dev"

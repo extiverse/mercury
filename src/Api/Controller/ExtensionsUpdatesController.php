@@ -24,6 +24,7 @@ class ExtensionsUpdatesController implements RequestHandlerInterface
         $checker = new UpdatesChecker($manager);
 
         $extensions = $checker->process();
+        $extensions->prepend($checker->core());
 
         /** @var SettingsRepositoryInterface $settings */
         $settings = resolve(SettingsRepositoryInterface::class);

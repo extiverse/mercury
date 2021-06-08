@@ -29,6 +29,8 @@ class CheckingUpdatesCommand extends Command
 
         $extensions = $checker->process();
 
+        $extensions->prepend($checker->core());
+
         $updatesAvailable = $extensions->filter(function (Extension $extension) {
             return $extension['needs-update'];
         });
