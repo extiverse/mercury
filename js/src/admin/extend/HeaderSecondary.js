@@ -5,7 +5,7 @@ import LinkButton from "flarum/common/components/LinkButton";
 export default function () {
     extend(HeaderSecondary.prototype, 'items', (items) => {
         const token = app.data.settings['extiverse-mercury.token'] || null;
-        const updates = app.data.settings['extiverse-mercury.updates-required'];
+        const updates = Number(app.data.settings['extiverse-mercury.updates-required']);
         let label, icon, warning;
 
         if (! token) {
