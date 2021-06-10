@@ -13,13 +13,13 @@ return [
 
     (new Flarum\Frontend('admin'))
         ->js(__DIR__ . '/js/dist/admin.js')
-        ->css(__DIR__ . '/resource/less/admin.less')
+        ->css(__DIR__ . '/resources/less/admin.less')
         ->content(Api\Content\AdminPayload::class),
 
     (new Flarum\Routes('api'))
         ->get('/extiverse/mercury/extension-updates', 'extiverse.mercury.extension-updates', Api\Controller\ExtensionsUpdatesController::class),
 
-    new Flarum\Locales(__DIR__ . '/resource/locale'),
+    new Flarum\Locales(__DIR__ . '/resources/locale'),
     (new Flarum\View)
         ->namespace('extiverse-mercury', __DIR__ . '/views'),
 ];
