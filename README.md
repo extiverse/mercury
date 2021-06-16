@@ -49,4 +49,4 @@ This [excellent discussion](https://discuss.flarum.org/d/24118) by Ian Morland w
 - [GitHub](https://github.com/extiverse/mercury)
 - [Extiverse](https://extiverse.com)
 
-[![](https://extiverse.com/extiverse/mercury/open-graph-image)](https://extiverse.com/extiverse/mercury)
+[![](https://extiverse.com/extension/extiverse/mercury/card.png)](https://extiverse.com/extension/extiverse/mercury)
