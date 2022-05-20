@@ -68,7 +68,8 @@ export default class ExtensionsUpdatesPage extends ExtensionPage {
         );
     }
     extensionUpdateItem(update, i) {
-        const classes = classList(['UserListPage-grid-rowItem', i % 2 > 0 && 'UserListPage-grid-rowItem--shaded']);
+        const updateClass = update['needs-update'] ? 'update-available' : 'update-ok';
+        const classes = classList(['UserListPage-grid-rowItem', i % 2 > 0 && 'UserListPage-grid-rowItem--shaded', updateClass]);
 
         return [
             <div className={classes} aria-rowindex={i + 2} aria-colindex={1}>{update['title']} <code>({update['name']})</code></div>,
