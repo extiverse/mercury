@@ -1,3 +1,4 @@
+import app from 'flarum/admin/app';
 import { extend } from 'flarum/extend';
 import HeaderSecondary from 'flarum/admin/components/HeaderSecondary';
 import LinkButton from "flarum/common/components/LinkButton";
